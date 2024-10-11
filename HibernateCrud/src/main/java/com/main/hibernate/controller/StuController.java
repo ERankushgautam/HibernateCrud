@@ -23,36 +23,42 @@ public class StuController {
 	@Autowired
 	private Service stuService;
 
+	// -------------------- INSERT ------------------------------
 	@PostMapping("/post")
 	public void addStudent(@RequestBody Student student) {
 		stuService.addStudent(student);
 	}
 
+	// -------------------- DELETE ------------------------------
 	@DeleteMapping("/deleteStudent/{id}")
 	public void deleteStudent(@PathVariable Long id) {
 		stuService.deleteStudent(id);
 	}
 
+	// -------------------- GET BY ID ------------------------------
 	@GetMapping("/get/{id}")
 	public Optional<Student> getStudentById(@PathVariable Long id) {
 		Optional<Student> student = stuService.getByIdStudent(id);
 		return student;
 	}
 
+//-------------------- UPDATE ------------------------------
 	@PutMapping("/update/{id}")
-	    public ResponseEntity<Student> updateStudent(@PathVariable Long id, @RequestBody Student studentDetails) {
-	        Optional<Student> studentOptional = stuService.getByIdStudent(id);
+	public ResponseEntity<Student> updateStudent(@PathVariable Long id, @RequestBody Student studentDetails) {
+		Optional<Student> studentOptional = stuService.getByIdStudent(id);
 
-	        if (studentOptional.isPresent()) {
-	            Student existingStudent = studentOptional.get();
-	            existingStudent.setName(studentDetails.getName()); 
-	            existingStudent.setEmail(studentDetails.getEmail());
-	            // Update other fields as necessary
-	            
-	            stuService.addStudent(existingStudent); 
-	            return ResponseEntity.ok(existingStudent);
-	        } else {
-	            return ResponseEntity.notFound().build(); 
-	        }
-}}
+		if (studentOptional.isPresent()) {
+			Student existingStudent = studentOptional.get();
+			existingStudent.setName(studentDetails.getName());
+			existingStudent.setEmail(studentDetails.getEmail());
+			existingStudent.setPassword(studentDetails.getPassword());
+			existingStudent.setCourse(studentDetails.getCourse());
+			existingStudent.setCity(studentDetails.getCity());
 
+			stuService.addStudent(existingStudent);
+			return ResponseEntity.ok(existingStudent);
+		} else {
+			return ResponseEntity.notFound().build();
+		}
+	}
+}

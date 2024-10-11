@@ -14,6 +14,9 @@ public class Service implements ServiceInterface {
 	@Autowired
 	private Repository stuRepository;
 
+	
+	// -------------------- INSERT ------------------------------
+
 	@Override
 	public Boolean addStudent(Student student) {
 		Boolean status = false;
@@ -29,6 +32,9 @@ public class Service implements ServiceInterface {
 
 	}
 
+	
+	// -------------------- GET All ------------------------------
+
 	@Override
 	public List<Student> getAllStudent() {
 
@@ -41,6 +47,8 @@ public class Service implements ServiceInterface {
 		return students;
 
 	}
+
+	// -------------------- DELETE ------------------------------
 
 	@Override
 	public Boolean deleteStudent(Long id) {
@@ -66,6 +74,8 @@ public class Service implements ServiceInterface {
 		return student;
 	}
 
+	// -------------------- UPDATE ------------------------------
+
 	@Override
 	public boolean updateStudent(Long id, Student student) {
 		try {
@@ -78,6 +88,10 @@ public class Service implements ServiceInterface {
 
 				updatedStudent.setEmail(student.getEmail());
 				updatedStudent.setCourse(student.getCourse());
+				updatedStudent.setPassword(student.getPassword());
+
+				updatedStudent.setCity(student.getCity());
+
 
 				stuRepository.save(updatedStudent);
 				return true;
