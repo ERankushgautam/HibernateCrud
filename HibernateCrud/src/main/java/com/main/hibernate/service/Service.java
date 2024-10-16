@@ -14,7 +14,6 @@ public class Service implements ServiceInterface {
 	@Autowired
 	private Repository stuRepository;
 
-	
 	// -------------------- INSERT ------------------------------
 
 	@Override
@@ -32,7 +31,6 @@ public class Service implements ServiceInterface {
 
 	}
 
-	
 	// -------------------- GET All ------------------------------
 
 	@Override
@@ -91,7 +89,6 @@ public class Service implements ServiceInterface {
 				updatedStudent.setPassword(student.getPassword());
 
 				updatedStudent.setCity(student.getCity());
-
 
 				stuRepository.save(updatedStudent);
 				return true;

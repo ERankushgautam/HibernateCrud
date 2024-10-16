@@ -4,6 +4,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
@@ -11,28 +12,26 @@ import lombok.Data;
 
 @Entity
 @Data
-@Table
+@Table(name = "address") 
 public class Address {
 
-	@jakarta.persistence.Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column
-	private Long Id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column
+    private Long id;
 
-	@Column
-	private String town;
+    @Column
+    private String town;
 
-	@Column
-	private String state;
+    @Column
+    private String state;
 
-	@Column
-	private String country;
+    @Column
+    private String country;
 
-	@Column
-	private Long pinCode;
-
-	@ManyToOne
-	@JoinColumn(referencedColumnName = "id")
-	private Student studentId;
-
+    @Column
+    private String pinCode; 
+    @ManyToOne
+    @JoinColumn(name = "student_id", referencedColumnName = "id") 
+    private Student student;
 }
