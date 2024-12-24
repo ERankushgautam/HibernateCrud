@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.main.hibernate.entities.Student;
 import com.main.hibernate.service.Service;
 
@@ -23,13 +22,13 @@ public class StuController {
 	@Autowired
 	private Service stuService;
 
-	// -------------------- INSERT ------------------------------
+	// -------------------- INSERT --------------------------------
 	@PostMapping("/post")
 	public void addStudent(@RequestBody Student student) {
 		stuService.addStudent(student);
 	}
 
-	// -------------------- DELETE ------------------------------
+	// -------------------- DELETE ---------------------------------
 	@DeleteMapping("/deleteStudent/{id}")
 	public void deleteStudent(@PathVariable Long id) {
 		stuService.deleteStudent(id);
@@ -42,7 +41,7 @@ public class StuController {
 		return student;
 	}
 
-//-------------------- UPDATE ------------------------------
+   //-------------------- UPDATE ------------------------------
 	@PutMapping("/update/{id}")
 	public ResponseEntity<Student> updateStudent(@PathVariable Long id, @RequestBody Student studentDetails) {
 		Optional<Student> studentOptional = stuService.getByIdStudent(id);

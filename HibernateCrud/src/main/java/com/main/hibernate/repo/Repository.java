@@ -6,4 +6,5 @@ import com.main.hibernate.entities.*;
 
 public interface Repository extends JpaRepository<Student, Long>{
 
+	
 }
